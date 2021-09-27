@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomeScreen from "./components/screens/HomeScreen";
+import ProductScreen from "./components/screens/productScreen";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="grid-container">
+        <header className="row">
+          <div>
+            <a className="brand" href="/">
+              Boostar101
+            </a>
+          </div>
+          <div>
+            <a href="/cart">Cart</a>
+            <a href="/signin">SignIn</a>
+          </div>
+        </header>
+        <main>
+          <Switch>
+            <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/" component={HomeScreen} />
+          </Switch>
+        </main>
+
+        <footer className="row center">Alrights reserved</footer>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
