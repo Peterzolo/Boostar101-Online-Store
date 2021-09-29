@@ -1,41 +1,33 @@
 import React from "react";
 import Product from "../Product";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import Loading from "../message/Loading";
 import Message from "../message/Message";
-//import data from '../../data'
+import { useSelector } from "react-redux";
+import { productListAction } from "../../redux/actions/productActions";
+
+import { useDispatch } from "react-redux";
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const productList = useSelector((state) => state.productList);
+
+  const { loading, error, products } = productList;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("http://localhost:5000/api/products");
-        console.log("This is the data", data);
-        setProducts(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(productListAction());
+  }, [dispatch]);
 
   return (
     <div>
       {loading ? (
         <Loading></Loading>
       ) : error ? (
-        <Message variant ="danger">{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
         <div className="row center">
-          {products.map((product) => (
+          {products && products.map((product) => (
             <Product key={product._id} product={product} />
           ))}
         </div>
