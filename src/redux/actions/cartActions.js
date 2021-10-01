@@ -21,8 +21,8 @@ export const addToCartAction =
       },
     });
 
-    //localStorage.setItem(
-    //  "cartItems",
-    //  JSON.stringify(getState().addToCart.itemsInCart)
-    //);
+    localStorage.setItem(
+      "itemsInCart",
+      JSON.stringify(getState().cart.itemsInCart)
+    );
   };
