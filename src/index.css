@@ -70,7 +70,10 @@ li {
   margin-top: 1rem;
 }
 
-button {
+button,
+input,
+select,
+textarea {
   padding: 10px;
   border-radius: 10px;
   border: 0.1rem gray solid;
@@ -81,15 +84,21 @@ button {
   cursor: pointer;
 }
 
+button {
+  background-color: #f0c040;
+}
 button.primary {
   background-color: #f0c040;
+  cursor: pointer;
 }
 
 button.block {
   width: 100%;
 }
 
-button:hover {
+button:hover,
+select :hover,
+input :hover textarea :hover {
   border: 0.1rem solid #ff8000;
   background-color: #b84a17;
 }
@@ -126,9 +135,14 @@ a.brand {
   flex: 2 1 50rem;
 }
 
+/*.min-30{
+  min-width: 30rem;
+}*/
+
 img {
   border-radius: 0.5rem;
 }
+
 img.medium {
   max-width: 29rem;
   width: 100%;
@@ -136,6 +150,12 @@ img.medium {
 img.large {
   width: 100%;
 }
+
+/*img.small{
+  max-width: 5rem;
+  width: 100%;
+
+}*/
 
 .card {
   border: 0.1rem #c0c0c0 solid;

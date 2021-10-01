@@ -7,18 +7,16 @@ import Message from "../message/Message";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-//import { useHistory } from "react-router";
 
 import { productDetailAction } from "../../redux/actions/productActions";
 
 const ProductScreen = (props) => {
   const dispatch = useDispatch();
-  //const history = useHistory();
+  const productId = props.match.params.id;
 
   const getProductDetail = useSelector((state) => state.productDetails);
   const { loading, error, product } = getProductDetail;
   const [quantity, setQuantity] = useState(1);
-  const productId = props.match.params.id;
 
   useEffect(() => {
     dispatch(productDetailAction(productId));
@@ -92,7 +90,7 @@ const ProductScreen = (props) => {
                   {product.countInStock > 0 && (
                     <>
                       <li>
-                        <di className="row">
+                        <div className="row">
                           <div>Quantity</div>
                           <div>
                             <select
@@ -108,7 +106,7 @@ const ProductScreen = (props) => {
                               )}
                             </select>
                           </div>
-                        </di>
+                        </div>
                       </li>
                       <li>
                         <button
